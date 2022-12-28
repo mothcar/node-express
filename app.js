@@ -41,22 +41,22 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+const url = "mongodb://admin:admin@svc.gksl2.cloudtype.app:32376/?authMechanism=DEFAULT"
 mongoose.set('strictQuery', false)
-main().catch(err => console.log(err));
 
-async function main() {
-  const DB_URL = "mongodb://admin:admin@svc.gksl2.cloudtype.app:32376?authMechanism=DEFAULT"
-  await mongoose.connect(DB_URL, {useNewUrlParser: true, useUnifiedTopology: true}, (err)=>{
-    if(err) console.log(err)
-    else console.log('Connected... successfully....')
-  });
 
-  const db = mongoose.connection
-  db.on('error', (error)=>console.log(error))
-  db.once('open', ()=>console.log('DB connected..'))
+/**
+ * Listen on provided port, on all network interfaces.
+ */
 
-  
-  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
-}
+mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true}, (err)=>{
+  if(err) console.log(err)
+  else console.log('Connected... successfully....')
+})
+const db = mongoose.connection
+db.on('error', (error)=>console.log(error))
+db.once('open', ()=>console.log('DB connected..'))
+
 
 module.exports = app;
