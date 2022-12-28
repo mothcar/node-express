@@ -51,6 +51,10 @@ async function main() {
     else console.log('Connected... successfully....')
   });
 
+  const db = mongoose.connection
+  db.on('error', (error)=>console.log(error))
+  db.once('open', ()=>console.log('DB connected..'))
+
   
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
