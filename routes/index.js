@@ -5,9 +5,10 @@ const User = require('../models/User')
 /* GET home page. */
 router.get("/", async (req, res, next) => {
   try {
-    const users = await User.find()
-    console.log('request : ', users)
-    res.json(users)
+    // const users = await User.find()
+    // console.log('request : ', users)
+    // res.json(users)
+    res.render("index", { title: 'user data ' });
     
   } catch(err) {
     res.status(500).json({message: err.message})
@@ -26,7 +27,7 @@ router.post("/save", async (req, res, next) => {
     const user = await newUser.save()
     if(user) res.json(user)
     else res.json({message:'No user'})
-    // res.render("index", { title: user });
+    
   } catch(err) {
     res.status(500).json({message: err.message})
   }
