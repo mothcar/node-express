@@ -5,10 +5,10 @@ const User = require('../models/User')
 /* GET home page. */
 router.get("/", async (req, res, next) => {
   try {
-    // const users = await User.find()
-    // console.log('request : ', users)
+    const users = await User.find()
+    console.log('request : ', users)
     // res.json(users)
-    res.render("index", { title: 'user data ' });
+    res.render("index", { title: users });
     
   } catch(err) {
     res.status(500).json({message: err.message})
