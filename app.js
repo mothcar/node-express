@@ -44,7 +44,7 @@ app.use(function(err, req, res, next) {
 main().catch(err => console.log(err));
 
 async function main() {
-  const DB_URL = "mongodb://svc.gksl2.cloudtype.app:32376"
+  const DB_URL = "mongodb://admin:admin@svc.gksl2.cloudtype.app:32376?authMechanism=DEFAULT"
   await mongoose.connect(DB_URL);
   
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
