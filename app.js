@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors')
-const mongoose = require('mongoose');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -41,22 +41,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
-const url = "mongodb://admin:admin@svc.gksl2.cloudtype.app:32376/?authMechanism=DEFAULT"
-mongoose.set('strictQuery', false)
-
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true}, (err)=>{
-  if(err) console.log(err)
-  else console.log('Connected... successfully....')
-})
-const db = mongoose.connection
-db.on('error', (error)=>console.log(error))
-db.once('open', ()=>console.log('DB connected..'))
 
 
 module.exports = app;
