@@ -25,6 +25,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+const mongoose = require('mongoose');
+const url = "mongodb://admin:admin@svc.gksl2.cloudtype.app:32376/?authMechanism=DEFAULT"
+mongoose.set('strictQuery', false)
+
+mongoose.connect(url, {useNewUrlParser: true}, (err)=>{
+  if(err) console.log(err)
+  else console.log('Connected... successfully....')
+})
+const db = mongoose.connection
+db.on('error', (error)=>console.log(error))
+db.once('open', ()=>console.log('DB connected..'))
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
