@@ -26,7 +26,12 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 const mongoose = require('mongoose');
-const url = "mongodb://admin:admin@svc.gksl2.cloudtype.app:32376/?authMechanism=DEFAULT"
+// Connect to Cloudtype : Expired
+// const url = "mongodb://admin:admin@svc.gksl2.cloudtype.app:32376/?authMechanism=DEFAULT"
+//
+const url = 'mongodb+srv://dbUser:1748atlas@cluster0.thuvp.mongodb.net/walkingcat?retryWrites=true&w=majority'
+// , {useNewUrlParser: true, useUnifiedTopology: true}
+
 mongoose.set('strictQuery', false)
 
 mongoose.connect(url, {useNewUrlParser: true}, (err)=>{
@@ -52,6 +57,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+const port = 9090
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
 
 
 

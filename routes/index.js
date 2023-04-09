@@ -2,13 +2,16 @@ var express = require('express');
 var router = express.Router();
 const User = require('../models/User')
 
+// router.use('/users',         require('./endpoint/users'))
+
 /* GET home page. */
 router.get("/", async (req, res, next) => {
   try {
     const users = await User.find()
     console.log('request : ', users)
     // res.json(users)
-    res.render("index", { title: users });
+    // res.render("index", { title: users });
+    res.json({message:'Good Server.............!!'})
     
   } catch(err) {
     res.status(500).json({message: err.message})
